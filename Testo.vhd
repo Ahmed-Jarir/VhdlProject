@@ -50,7 +50,15 @@ ARCHITECTURE behavior OF Testo IS
 		  BCD4 : inout  STD_LOGIC_VECTOR (3 downto 0);
 		  BCD5 : inout  STD_LOGIC_VECTOR (3 downto 0);
 		  BCD6 : inout  STD_LOGIC_VECTOR (3 downto 0);
-		  BCD7 : inout  STD_LOGIC_VECTOR (3 downto 0)
+		  BCD7 : inout  STD_LOGIC_VECTOR (3 downto 0);
+		  Led0 : out STD_LOGIC_VECTOR (6 downto 0);
+		  Led1 : out STD_LOGIC_VECTOR (6 downto 0);
+		  Led2 : out STD_LOGIC_VECTOR (6 downto 0);
+		  Led3 : out STD_LOGIC_VECTOR (6 downto 0);
+		  Led4 : out STD_LOGIC_VECTOR (6 downto 0);
+		  Led5 : out STD_LOGIC_VECTOR (6 downto 0);
+		  Led6 : out STD_LOGIC_VECTOR (6 downto 0);
+		  Led7 : out STD_LOGIC_VECTOR (6 downto 0)
         );
     END COMPONENT;
     
@@ -62,14 +70,23 @@ ARCHITECTURE behavior OF Testo IS
    signal binary : std_logic_vector(63 downto 0);
 
 	--BiDirs
-	signal BCD0 :   STD_LOGIC_VECTOR (3 downto 0);
-	signal BCD1 :   STD_LOGIC_VECTOR (3 downto 0);
-	signal BCD2 :   STD_LOGIC_VECTOR (3 downto 0);
-	signal BCD3 :   STD_LOGIC_VECTOR (3 downto 0);
-	signal BCD4 :   STD_LOGIC_VECTOR (3 downto 0);
-	signal BCD5 :   STD_LOGIC_VECTOR (3 downto 0);
-	signal BCD6 :   STD_LOGIC_VECTOR (3 downto 0);
-	signal BCD7 :   STD_LOGIC_VECTOR (3 downto 0);
+	signal BCD0 : STD_LOGIC_VECTOR (3 downto 0);
+	signal BCD1 : STD_LOGIC_VECTOR (3 downto 0);
+	signal BCD2 : STD_LOGIC_VECTOR (3 downto 0);
+	signal BCD3 : STD_LOGIC_VECTOR (3 downto 0);
+	signal BCD4 : STD_LOGIC_VECTOR (3 downto 0);
+	signal BCD5 : STD_LOGIC_VECTOR (3 downto 0);
+	signal BCD6 : STD_LOGIC_VECTOR (3 downto 0);
+	signal BCD7 : STD_LOGIC_VECTOR (3 downto 0);
+	
+	signal Led0 : STD_LOGIC_VECTOR (6 downto 0);
+	signal Led1 : STD_LOGIC_VECTOR (6 downto 0);
+	signal Led2 : STD_LOGIC_VECTOR (6 downto 0);
+	signal Led3 : STD_LOGIC_VECTOR (6 downto 0);
+	signal Led4 : STD_LOGIC_VECTOR (6 downto 0);
+	signal Led5 : STD_LOGIC_VECTOR (6 downto 0);
+	signal Led6 : STD_LOGIC_VECTOR (6 downto 0);
+	signal Led7 : STD_LOGIC_VECTOR (6 downto 0);
    -- No clocks detected in port list. Replace <clock> below with 
    -- appropriate port name 
  
@@ -88,7 +105,15 @@ BEGIN
 			 BCD4 => BCD4,
 			 BCD5 => BCD5,
 			 BCD6 => BCD6,
-			 BCD7 => BCD7
+			 BCD7 => BCD7,
+			 Led0 => Led0,
+			 Led1 => Led1,
+			 Led2 => Led2,
+			 Led3 => Led3,
+			 Led4 => Led4,
+			 Led5 => Led5,
+			 Led6 => Led6,
+			 Led7 => Led7
         );
 
    -- Clock process definitions

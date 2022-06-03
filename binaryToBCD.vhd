@@ -40,13 +40,25 @@ entity binaryToBCD is
            BCD4 : inout  STD_LOGIC_VECTOR (3 downto 0);
 			  BCD5 : inout  STD_LOGIC_VECTOR (3 downto 0);
 			  BCD6 : inout  STD_LOGIC_VECTOR (3 downto 0);
-			  BCD7 : inout  STD_LOGIC_VECTOR (3 downto 0));
+			  BCD7 : inout  STD_LOGIC_VECTOR (3 downto 0);
+			  Led0 : out STD_LOGIC_VECTOR (6 downto 0);
+			  Led1 : out STD_LOGIC_VECTOR (6 downto 0);
+			  Led2 : out STD_LOGIC_VECTOR (6 downto 0);
+			  Led3 : out STD_LOGIC_VECTOR (6 downto 0);
+			  Led4 : out STD_LOGIC_VECTOR (6 downto 0);
+			  Led5 : out STD_LOGIC_VECTOR (6 downto 0);
+			  Led6 : out STD_LOGIC_VECTOR (6 downto 0);
+			  Led7 : out STD_LOGIC_VECTOR (6 downto 0));
 end binaryToBCD;
 
 architecture Behavioral of binaryToBCD is
 	component NthNumberCalculator is
 		 Port ( N : in  STD_LOGIC_VECTOR (5 downto 0);
 				  NthTerm : inout  STD_LOGIC_VECTOR (63 downto 0));
+	end component;
+	component bcdToLed is
+		 Port ( BCD : in  STD_LOGIC_VECTOR (3 downto 0);
+				  Led : out  STD_LOGIC_VECTOR (6 downto 0));
 	end component;
 	
 	signal ten : std_logic_vector(3 downto 0) := "1010";
@@ -75,5 +87,14 @@ begin
 	BCD6 <= std_logic_vector(to_unsigned(to_integer(unsigned(divide5)) mod to_integer(unsigned(ten)),4));
 	divide6 <= std_logic_vector(to_unsigned(to_integer(unsigned(divide5)/unsigned(ten)),64));
 	BCD7 <= std_logic_vector(to_unsigned(to_integer(unsigned(divide6)) mod to_integer(unsigned(ten)),4));
+	L0 : bcdToLed port map (BCD0,Led0);
+	L1 : bcdToLed port map (BCD1,Led1);
+	L2 : bcdToLed port map (BCD2,Led2);
+	L3 : bcdToLed port map (BCD3,Led3);
+	L4 : bcdToLed port map (BCD4,Led4);
+	L5 : bcdToLed port map (BCD5,Led5);
+	L6 : bcdToLed port map (BCD6,Led6);
+	L7 : bcdToLed port map (BCD7,Led7);
+
 end Behavioral;
 
