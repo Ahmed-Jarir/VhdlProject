@@ -38,12 +38,12 @@ end NthNumberCalculator;
 
 architecture Behavioral of NthNumberCalculator is
 	signal temp : STD_LOGIC_VECTOR (15 downto 0);
-	signal temp2 : STD_LOGIC_VECTOR (15 downto 0) := "0000000000000001";
+	signal temp2 : unsigned (15 downto 0) := to_unsigned(1,16);
 	signal one : STD_LOGIC_VECTOR (5 downto 0):= "000001";
 	signal sub : STD_LOGIC_VECTOR (5 downto 0);
 begin
 	--sub <= std_logic_vector(unsigned(N) - unsigned(one));
-	temp <= std_logic_vector(shift_left(unsigned(temp2), to_integer(unsigned(N))));
+	temp <= std_logic_vector(shift_left(temp2, to_integer(unsigned(N))));
 
 	NthTerm <= std_logic_vector(resize((unsigned(temp) * unsigned(N)+unsigned(one)), 32));
 
@@ -51,4 +51,3 @@ begin
 
 
 end Behavioral;
-
