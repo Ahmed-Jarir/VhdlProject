@@ -33,7 +33,7 @@ use ieee.numeric_std.all;
 
 entity NthNumberCalculator is
     Port ( N : in  STD_LOGIC_VECTOR (5 downto 0);
-           NthTerm : inout  STD_LOGIC_VECTOR (63 downto 0));
+           NthTerm : inout  STD_LOGIC_VECTOR (31 downto 0));
 end NthNumberCalculator;
 
 architecture Behavioral of NthNumberCalculator is
@@ -45,7 +45,7 @@ begin
 	--sub <= std_logic_vector(unsigned(N) - unsigned(one));
 	temp <= std_logic_vector(shift_left(unsigned(temp2), to_integer(unsigned(N))));
 
-	NthTerm <= std_logic_vector(resize((unsigned(temp) * unsigned(N)+unsigned(one)), 64));
+	NthTerm <= std_logic_vector(resize((unsigned(temp) * unsigned(N)+unsigned(one)), 32));
 
 
 

@@ -10,7 +10,7 @@
 -- Tool versions:  
 -- Description:   
 -- 
--- VHDL Test Bench Created by ISE for module: binaryToBCD
+-- VHDL Test Bench Created by ISE for module: MainF
 -- 
 -- Dependencies:
 -- 
@@ -39,10 +39,10 @@ ARCHITECTURE behavior OF Testo IS
  
     -- Component Declaration for the Unit Under Test (UUT)
  
-    COMPONENT binaryToBCD
+    COMPONENT MainF
     PORT(
 		  N0 : IN  std_logic_vector(5 downto 0);
-		  binary : INOUT  std_logic_vector(63 downto 0);
+		  binary : INOUT  std_logic_vector(31 downto 0);
 		  BCD0 : inout  STD_LOGIC_VECTOR (3 downto 0);
 		  BCD1 : inout  STD_LOGIC_VECTOR (3 downto 0);
 		  BCD2 : inout  STD_LOGIC_VECTOR (3 downto 0);
@@ -67,7 +67,7 @@ ARCHITECTURE behavior OF Testo IS
 	signal N0 : std_logic_vector( 5 downto 0);
 
 
-   signal binary : std_logic_vector(63 downto 0);
+   signal binary : std_logic_vector(31 downto 0);
 
 	--BiDirs
 	signal BCD0 : STD_LOGIC_VECTOR (3 downto 0);
@@ -95,7 +95,7 @@ ARCHITECTURE behavior OF Testo IS
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
-   uut: binaryToBCD PORT MAP (
+   uut: MainF PORT MAP (
 			 N0 => N0,
           binary => binary,
           BCD0 => BCD0,
