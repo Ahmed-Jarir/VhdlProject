@@ -22,7 +22,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 use ieee.numeric_std.all;
 
 -- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
+-- arithmetic functions with Signed or to_to_to_unsigned values
 --use IEEE.NUMERIC_STD.ALL;
 
 -- Uncomment the following library declaration if instantiating
@@ -33,22 +33,7 @@ use ieee.numeric_std.all;
 entity MainF is
     Port ( N0 : in STD_Logic_vector(5 downto 0);
 			  binary : inout  STD_LOGIC_VECTOR (31 downto 0);
-			  BCD0 : inout  STD_LOGIC_VECTOR (3 downto 0);
-			  BCD1 : inout  STD_LOGIC_VECTOR (3 downto 0);
-			  BCD2 : inout  STD_LOGIC_VECTOR (3 downto 0);
-			  BCD3 : inout  STD_LOGIC_VECTOR (3 downto 0);
-           BCD4 : inout  STD_LOGIC_VECTOR (3 downto 0);
-			  BCD5 : inout  STD_LOGIC_VECTOR (3 downto 0);
-			  BCD6 : inout  STD_LOGIC_VECTOR (3 downto 0);
-			  BCD7 : inout  STD_LOGIC_VECTOR (3 downto 0);
-			  Led0 : out STD_LOGIC_VECTOR (6 downto 0);
-			  Led1 : out STD_LOGIC_VECTOR (6 downto 0);
-			  Led2 : out STD_LOGIC_VECTOR (6 downto 0);
-			  Led3 : out STD_LOGIC_VECTOR (6 downto 0);
-			  Led4 : out STD_LOGIC_VECTOR (6 downto 0);
-			  Led5 : out STD_LOGIC_VECTOR (6 downto 0);
-			  Led6 : out STD_LOGIC_VECTOR (6 downto 0);
-			  Led7 : out STD_LOGIC_VECTOR (6 downto 0));
+			  Led : out STD_LOGIC_VECTOR (55 downto 0));
 end MainF;
 
 architecture Behavioral of MainF is
@@ -56,67 +41,43 @@ architecture Behavioral of MainF is
 		 Port ( N : in  STD_LOGIC_VECTOR (5 downto 0);
 				  NthTerm : inout  STD_LOGIC_VECTOR (31 downto 0));
 	end component;
-	component bcdToLed is
-		 Port ( BCD : in  STD_LOGIC_VECTOR (3 downto 0);
-				  Led : out  STD_LOGIC_VECTOR (6 downto 0));
-	end component;
-	component JuuNoModuyuro is
-		Port ( number : in  std_logic_vector(31 downto 0);
-				 modo : out  std_logic_vector(3 downto 0));
-	end component;
-	
-	constant ten : integer := 10;
-	constant shifter : integer := 15;
-	constant tenDivide : unsigned(31 downto 0) := to_unsigned(3276,32);
-	signal divide0 : std_logic_vector(31 downto 0);
-	signal divide1 : std_logic_vector(31 downto 0);
-	signal divide2 : std_logic_vector(31 downto 0);
-	signal divide3 : std_logic_vector(31 downto 0);
-	signal divide4 : std_logic_vector(31 downto 0);
-	signal divide5 : std_logic_vector(31 downto 0);
-	signal divide6 : std_logic_vector(31 downto 0);
-
 	
 
 begin
 	
 	NthTerm : NthNumberCalculator port map (N0, binary);
 
-	--process (binary,divide0, BCD0,BCD1,BCD2,BCD3,BCD4,BCD5,BCD6,BCD7)
-	--begin
 	
-	m0 : JuuNoModuyuro port map (binary, BCD0);
 	
-	divide0 <= std_logic_vector(shift_right(resize((unsigned(binary) * tenDivide), 32),shifter));
-	
-	m1 : JuuNoModuyuro port map (divide0, BCD1);
-	divide1 <= std_logic_vector(shift_right(resize((unsigned(divide0) * tenDivide), 32),shifter));
-	
-	m2 : JuuNoModuyuro port map (divide1, BCD2);
-	divide2 <= std_logic_vector(shift_right(resize((unsigned(divide1) * tenDivide), 32),shifter));
-	
-	m3 : JuuNoModuyuro port map (divide2, BCD3);
-	divide3 <= std_logic_vector(shift_right(resize((unsigned(divide2) * tenDivide), 32),shifter));
-	
-	m4 : JuuNoModuyuro port map (divide3, BCD4);
-	divide4 <= std_logic_vector(shift_right(resize((unsigned(divide3) * tenDivide), 32),shifter));
-	
-	m5 : JuuNoModuyuro port map (divide4, BCD5);
-	divide5 <= std_logic_vector(shift_right(resize((unsigned(divide4) * tenDivide), 32),shifter));
-	
-	m6 : JuuNoModuyuro port map (divide5, BCD6);
-	divide6 <= std_logic_vector(shift_right(resize((unsigned(divide5) * tenDivide), 32),shifter));
-	
-	m7 : JuuNoModuyuro port map (divide6, BCD7);
-	--end process;
-	L0 : bcdToLed port map (BCD0,Led0);
-	L1 : bcdToLed port map (BCD1,Led1);
-	L2 : bcdToLed port map (BCD2,Led2);
-	L3 : bcdToLed port map (BCD3,Led3);
-	L4 : bcdToLed port map (BCD4,Led4);
-	L5 : bcdToLed port map (BCD5,Led5);
-	L6 : bcdToLed port map (BCD6,Led6);
-	L7 : bcdToLed port map (BCD7,Led7);
-	
+	process(binary)
+	begin
+		case binary is
+			
+			when "00000000000000000000000000000001" => Led <= "11111111111111111111111111111111111111111111111111001111";
+			when "00000000000000000000000000000011" => Led <= "11111111111111111111111111111111111111111111111110000110";
+			when "00000000000000000000000000001001" => Led <= "11111111111111111111111111111111111111111111111110000100";
+			when "00000000000000000000000000011001" => Led <= "11111111111111111111111111111111111111111101001000010010";
+			when "00000000000000000000000001000001" => Led <= "11111111111111111111111111111111111111111101001000100000";
+			when "00000000000000000000000010100001" => Led <= "11111111111111111111111111111111111100111101000001001111";
+			when "00000000000000000000000110000001" => Led <= "11111111111111111111111111111111111000011000000000100100";
+			when "00000000000000000000001110000001" => Led <= "11111111111111111111111111111111111000000000001000001111";
+			when "00000000000000000000100000000001" => Led <= "11111111111111111111111111110010010000000110011000000100";
+			when "00000000000000000001001000000001" => Led <= "11111111111111111111111111111001100010000000000010000100";
+			when "00000000000000000010100000000001" => Led <= "11111111111111111111110011110000001001001010011001001111";
+			when "00000000000000000101100000000001" => Led <= "11111111111111111111100100100010010010010000100100000100";
+			when "00000000000000001100000000000001" => Led <= "11111111111111111111110011000000100100111101001000000110";
+			when "00000000000000011010000000000001" => Led <= "11111111111111100111100000010100000100110000001000001111";
+			when "00000000000000111000000000000001" => Led <= "11111111111111001001000100100000100000011000011110001111";
+			when "00000000000001111000000000000001" => Led <= "11111111111111100110000001001001111010010000100101001111";
+			when "00000000000100000000000000000001" => Led <= "11111111001111000000110011000000000010010000011110001111";
+			when "00000000001000100000000000000001" => Led <= "11111110010010001001000100100000000001001000100100100100";
+			when "00000000010010000000000000000001" => Led <= "11111111001100000111110011110000000010010000001000000110";
+			when "00000000100110000000000000000001" => Led <= "11111110000100000010001000001001111100110000011110000110";
+			when "00000001010000000000000000000001" => Led <= "00100100000001000010000011111001111010010000100101001111";
+			when "00000010101000000000000000000001" => Led <= "10011001001100000000110011000000001100111100001000000110";
+			when others => 									 Led <= "11111101111110111111011111101111110111111011111101111110";
+		end case;
+		
+	end process;
 
 end Behavioral;
