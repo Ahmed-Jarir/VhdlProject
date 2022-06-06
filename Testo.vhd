@@ -43,6 +43,8 @@ ARCHITECTURE behavior OF Testo IS
     COMPONENT MainF
     PORT(
 		  N0 : in STD_Logic_vector(5 downto 0);
+		  jikan : in STD_LOGIC;
+		  button_clicked : in STD_LOGIC;
 		  binary : inout  STD_LOGIC_VECTOR (31 downto 0);
 		  Led : out STD_LOGIC_VECTOR (55 downto 0));
     END COMPONENT;
@@ -68,7 +70,8 @@ BEGIN
    uut: MainF PORT MAP (
 			 N0 => N0,
           binary => binary,
-
+			 jikan =>jikan ,
+			 button_clicked ,
 			 Led => Led
         );
 
