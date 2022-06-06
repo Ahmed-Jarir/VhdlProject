@@ -35,20 +35,24 @@ entity clockDiv is
 end clockDiv;
 
 architecture Behavioral of clockDiv is
-	signal count : natural range 0 to (10**3);
+	--constant refresh : natural := 10**3;
+	constant refresh : natural := 3;
+	signal val : STD_LOGIC := '1';
 begin
 	
 	process(clock)
+		variable count : natural range 0 to refresh;
 	begin
 
 		if rising_edge(clock) then
-			count <= count +1;
-			if (counter = (10**3)) then
-				count <= 0;
-				clock_div <= not clock_div;
+			count := count +1;
+			if (count = refresh/1 - 1) then
+				count := 0;
+				val <= not val;
 			end if;
 		end if;
 	end process;
+	clock_div <= val;
 
 end Behavioral;
 

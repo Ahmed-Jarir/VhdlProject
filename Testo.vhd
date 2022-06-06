@@ -45,20 +45,23 @@ ARCHITECTURE behavior OF Testo IS
 		  N0 : in STD_Logic_vector(5 downto 0);
 		  jikan : in STD_LOGIC;
 		  button_clicked : in STD_LOGIC;
-		  binary : inout  STD_LOGIC_VECTOR (31 downto 0);
-		  Led : out STD_LOGIC_VECTOR (55 downto 0));
+		  sevSeg : out STD_LOGIC_VECTOR (6 downto 0));
     END COMPONENT;
     
+	 CONSTANT clock_frequency : INTEGER := 100e6; -- 100 MHz
+    CONSTANT clock_period    : TIME    := 1000 ms / clock_frequency;
 
    --Inputs
 	signal N0 : std_logic_vector( 5 downto 0);
 
 
-   signal binary : std_logic_vector(31 downto 0);
+   signal button_clicked : std_logic;
 
 	--BiDirs
 
-	signal Led : STD_LOGIC_VECTOR (55 downto 0);
+	signal jikan : STD_LOGIC := '0';
+	
+	signal sevSeg : STD_LOGIC_VECTOR (6 downto 0);
    -- No clocks detected in port list. Replace <clock> below with 
    -- appropriate port name 
  
@@ -69,22 +72,26 @@ BEGIN
 	-- Instantiate the Unit Under Test (UUT)
    uut: MainF PORT MAP (
 			 N0 => N0,
-          binary => binary,
-			 jikan =>jikan ,
-			 button_clicked ,
-			 Led => Led
+			 jikan => jikan ,
+			 button_clicked => button_clicked,
+			 sevSeg => sevSeg
         );
 
    -- Clock process definitions
- 
+	jikan <= NOT jikan AFTER clock_period / 2;
 
    -- Stimulus process
    stim_proc: process
    begin		
       -- hold reset state for 100 ns.
-
+		--jikan <= NOT jikan AFTER clock_period / 2;
+		
 		N0 <= "000010";
-      wait for 10 ns;		
+		wait for 50 ns;
+		button_clicked <= '1';
+		wait for 10 ns;
+		button_clicked <= '0';
+      wait for 50 ns;		
 		N0 <= "000011";
 		wait for 50 ns;
 
