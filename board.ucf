@@ -1,0 +1,89 @@
+# Prometheus Board Implementation Constraints File
+
+## Clock
+NET "jikan" LOC = "P40";
+
+## Switches (Generic)
+## NET "switches<9>" LOC = "P78"; # Left
+## NET "switches<8>" LOC = "P82";
+## NET "switches<7>" LOC = "P85";
+## NET "switches<6>" LOC = "P88";
+## NET "switches<5>" LOC = "P90";
+## NET "switches<4>" LOC = "P94";
+## NET "switches<3>" LOC = "P4" ;
+## NET "switches<2>" LOC = "P5" ;
+## NET "switches<1>" LOC = "P12";
+## NET "switches<0>" LOC = "P15"; # Right
+
+## Switches (Custom)
+## Use switches as fixed-point numbers input_a and input_b
+#NET "input_b<4>" LOC = "P78"; # Left
+#NET "input_b<3>" LOC = "P82";
+#NET "input_b<2>" LOC = "P85";
+#NET "input_b<1>" LOC = "P88";
+
+NET "N0<5>" LOC = "P90";
+NET "N0<4>" LOC = "P94";
+NET "N0<3>" LOC = "P4" ;
+NET "N0<2>" LOC = "P5" ;
+NET "N0<1>" LOC = "P12";
+NET "N0<0>" LOC = "P15"; # Right
+
+## LEDs (Generic)
+## NET "leds<9>" LOC = "P77"; # Left
+## NET "leds<8>" LOC = "P83";
+## NET "leds<7>" LOC = "P84";
+## NET "leds<6>" LOC = "P86";
+## NET "leds<5>" LOC = "P89";
+## NET "leds<4>" LOC = "P93";
+## NET "leds<3>" LOC = "P3" ;
+## NET "leds<2>" LOC = "P6" ;
+## NET "leds<1>" LOC = "P13";
+## NET "leds<0>" LOC = "P16"; # Right
+
+## LEDs (Custom)
+## Use LEDs as reflections for input_a and input_b
+#NET "ref_b<4>" LOC = "P77"; # Left
+#NET "ref_b<3>" LOC = "P83";
+#NET "ref_b<2>" LOC = "P84";
+#NET "ref_b<1>" LOC = "P86";
+
+#NET "N0<5>" LOC = "P89";
+#NET "N0<4>" LOC = "P93";
+#NET "N0<3>" LOC = "P3" ;
+#NET "N0<2>" LOC = "P6" ;
+#NET "N0<1>" LOC = "P13";
+#NET "N0<0>" LOC = "P16"; # Right
+
+## Buttons (Generic)
+## NET "btns<5>" LOC = "P35"; # Bottom Left
+## NET "btns<4>" LOC = "P34"; # Bottom Right
+## NET "btns<3>" LOC = "P36"; # Middle Left
+## NET "btns<2>" LOC = "P33"; # Middle Right
+## NET "btns<1>" LOC = "P37"; # Top Left
+## NET "btns<0>" LOC = "P32"; # Top Right
+
+## Buttons (Custom)
+#NET "btn_div" LOC = "P37"; # Top Left
+NET "button_clicked" LOC = "P32"; # Top Right
+
+## Seven-Segment Display Data (Generic)
+NET "sevSeg<0>" LOC = "P64"; # G
+NET "sevSeg<1>" LOC = "P98"; # F
+NET "sevSeg<2>" LOC = "P73"; # E
+NET "sevSeg<3>" LOC = "P72"; # D
+NET "sevSeg<4>" LOC = "P65"; # C
+NET "sevSeg<5>" LOC = "P62"; # B
+NET "sevSeg<6>" LOC = "P71"; # A
+#NET "sevSeg<0>" LOC = "P70"; # DP
+
+## Seven-Segment Display Control (Generic)
+
+NET "positionOut<0>" LOC = "P60"; # Left7
+NET "positionOut<7>" LOC = "P61";#6
+NET "positionOut<6>" LOC = "P59";#5
+NET "positionOut<5>" LOC = "P57";#4
+NET "positionOut<4>" LOC = "P52";#3
+NET "positionOut<3>" LOC = "P56";#0
+NET "positionOut<2>" LOC = "P50";#1
+NET "positionOut<1>" LOC = "P49"; # Right 2
