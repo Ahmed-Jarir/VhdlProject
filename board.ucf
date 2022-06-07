@@ -22,7 +22,6 @@ NET "jikan" LOC = "P40";
 #NET "input_b<2>" LOC = "P85";
 #NET "input_b<1>" LOC = "P88";
 
-NET "N0<5>" LOC = "P90";
 NET "N0<4>" LOC = "P94";
 NET "N0<3>" LOC = "P4" ;
 NET "N0<2>" LOC = "P5" ;
@@ -48,12 +47,12 @@ NET "N0<0>" LOC = "P15"; # Right
 #NET "ref_b<2>" LOC = "P84";
 #NET "ref_b<1>" LOC = "P86";
 
-#NET "N0<5>" LOC = "P89";
-#NET "N0<4>" LOC = "P93";
-#NET "N0<3>" LOC = "P3" ;
-#NET "N0<2>" LOC = "P6" ;
-#NET "N0<1>" LOC = "P13";
-#NET "N0<0>" LOC = "P16"; # Right
+#NET "N1<5>" LOC = "P89";
+NET "N1<4>" LOC = "P93";
+NET "N1<3>" LOC = "P3" ;
+NET "N1<2>" LOC = "P6" ;
+NET "N1<1>" LOC = "P13";
+NET "N1<0>" LOC = "P16"; # Right
 
 ## Buttons (Generic)
 ## NET "btns<5>" LOC = "P35"; # Bottom Left

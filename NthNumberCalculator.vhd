@@ -32,21 +32,21 @@ use ieee.numeric_std.all;
 --use UNISIM.VComponents.all;
 
 entity NthNumberCalculator is
-    Port ( N : in  STD_LOGIC_VECTOR (5 downto 0);
+    Port ( N : in  STD_LOGIC_VECTOR (4 downto 0);
            NthTerm : inout  STD_LOGIC_VECTOR (31 downto 0));
 end NthNumberCalculator;
 
 architecture Behavioral of NthNumberCalculator is
-	signal temp : STD_LOGIC_VECTOR (21 downto 0);
-	signal temp2 : unsigned (21 downto 0) := to_unsigned(1,22);
-	signal one : STD_LOGIC_VECTOR (5 downto 0):= "000001";
-	signal sub : STD_LOGIC_VECTOR (5 downto 0);
-	constant error : STD_LOGIC_VECTOR (5 downto 0) := "010110";
+	signal temp : STD_LOGIC_VECTOR (23 downto 0);
+	signal temp2 : unsigned (23 downto 0) := to_unsigned(1,24);
+	signal one : STD_LOGIC_VECTOR (4 downto 0):= "00001";
+	--signal sub : STD_LOGIC_VECTOR (5 downto 0);
+	constant error : STD_LOGIC_VECTOR (4 downto 0) := "10111";
 begin
 	--sub <= std_logic_vector(unsigned(N) - unsigned(one));
-	process
+	process(N)
 	begin
-	if n >= error then
+	if (n >= error) then
 		NthTerm <= "11111111111111111111111111111111";
 	else
 		temp <= std_logic_vector(shift_left(temp2, to_integer(unsigned(N))));

@@ -36,7 +36,7 @@ end clockDiv;
 
 architecture Behavioral of clockDiv is
 	--constant refresh : natural := 10**3;
-	constant refresh : natural := 5 * 10**4;
+	constant refresh : natural := 10**4;
 	signal val : STD_LOGIC := '1';
 begin
 	
