@@ -37,8 +37,8 @@ entity NthNumberCalculator is
 end NthNumberCalculator;
 
 architecture Behavioral of NthNumberCalculator is
-	signal temp : STD_LOGIC_VECTOR (15 downto 0);
-	signal temp2 : unsigned (15 downto 0) := to_unsigned(1,16);
+	signal temp : STD_LOGIC_VECTOR (21 downto 0);
+	signal temp2 : unsigned (21 downto 0) := to_unsigned(1,22);
 	signal one : STD_LOGIC_VECTOR (5 downto 0):= "000001";
 	signal sub : STD_LOGIC_VECTOR (5 downto 0);
 begin

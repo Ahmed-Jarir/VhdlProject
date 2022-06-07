@@ -86,7 +86,7 @@ BEGIN
       -- hold reset state for 100 ns.
 		--jikan <= NOT jikan AFTER clock_period / 2;
 		
-		N0 <= "000010";
+		N0 <= "010000";
 		wait for 50 ns;
 		button_clicked <= '1';
 		wait for 10 ns;
