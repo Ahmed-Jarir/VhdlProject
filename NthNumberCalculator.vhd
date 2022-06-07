@@ -41,13 +41,19 @@ architecture Behavioral of NthNumberCalculator is
 	signal temp2 : unsigned (21 downto 0) := to_unsigned(1,22);
 	signal one : STD_LOGIC_VECTOR (5 downto 0):= "000001";
 	signal sub : STD_LOGIC_VECTOR (5 downto 0);
+	constant error : STD_LOGIC_VECTOR (5 downto 0) := "010110";
 begin
 	--sub <= std_logic_vector(unsigned(N) - unsigned(one));
-	temp <= std_logic_vector(shift_left(temp2, to_integer(unsigned(N))));
+	process
+	begin
+	if n >= error then
+		NthTerm <= "11111111111111111111111111111111";
+	else
+		temp <= std_logic_vector(shift_left(temp2, to_integer(unsigned(N))));
 
-	NthTerm <= std_logic_vector(resize((unsigned(temp) * unsigned(N)+unsigned(one)), 32));
+		NthTerm <= std_logic_vector(resize((unsigned(temp) * unsigned(N)+unsigned(one)), 32));
+	end if;
 
 
-
-
+	end process;
 end Behavioral;
